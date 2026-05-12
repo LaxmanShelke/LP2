@@ -1,0 +1,178 @@
+chat_data = {
+    "hello": "Hello! Welcome to our customer support chat.",
+    "hi": "Hi! How can I help you today?",
+    "what products do you have": "We have bags, watches, clothes, electronics, mobile accessories, laptops, headphones, sunglasses, perfumes, jewelry, wallets, belts, sports items, and home appliances.",
+    "where is my order": "Please share your order ID to check the order status.",
+    "order status": "Please enter your order number for order details.",
+    "delivery time": "Delivery usually takes 3 to 5 working days.",
+    "return policy": "You can return the product within 7 days of delivery.",
+    "refund policy": "Refund will be processed within 5 to 7 working days.",
+    "contact number": "Our customer care number is 7499542760.",
+    "customer care": "You can contact customer care at 7499542760.",
+    "thank you": "You are welcome!",
+    "bye": "Thank you for visiting. Have a nice day!"
+}
+
+def chatbot():
+
+    print("Chatbot: Hello! Type 'bye' to exit.")
+
+    while True:
+
+        user_input = input("You: ").lower().strip()
+
+        found = False
+
+        for question in chat_data:
+
+            if question in user_input:
+
+                print("Chatbot:", chat_data[question])
+
+                found = True
+
+                break
+
+        if user_input == "bye":
+
+            print("Chatbot: Thank you for visiting. Goodbye!")
+
+            break
+
+        if not found and user_input != "bye":
+
+            print("Chatbot: Sorry, I do not understand your question. Please contact support.")
+
+# Function Call
+chatbot()
+
+
+
+Theory
+Theory
+
+# Elementary Chatbot for Customer Interaction Application
+
+# Introduction
+
+A **Chatbot** is a computer program designed to simulate conversation with users through text or voice communication.
+It is widely used in customer interaction systems to provide quick responses and automated support.
+
+An **Elementary Chatbot** is a simple chatbot that responds to predefined user questions using programmed rules and conditions.
+
+---
+
+# Objective
+
+The objective of the chatbot is to:
+
+* Answer customer queries automatically
+* Reduce human effort
+* Provide 24/7 customer support
+* Improve customer experience
+
+---
+
+# Customer Interaction Application
+
+In customer support systems, chatbots help users with:
+
+* Product information
+* Order tracking
+* Delivery details
+* Return and refund policies
+* Customer care contact details
+
+---
+
+# Working of Chatbot
+
+The chatbot works using simple pattern matching.
+
+## Steps
+
+1. User enters a message.
+2. Chatbot compares the message with stored questions.
+3. If a matching question is found:
+
+   * Appropriate response is displayed.
+4. Otherwise:
+
+   * Chatbot displays a default message.
+
+---
+
+# Components of Chatbot
+
+| Component          | Description                                    |
+| ------------------ | ---------------------------------------------- |
+| User Input         | Message entered by customer                    |
+| Knowledge Base     | Collection of predefined questions and answers |
+| Processing Unit    | Matches user query with stored data            |
+| Response Generator | Displays appropriate reply                     |
+
+---
+
+# Algorithm of Elementary Chatbot
+
+```text id="gzib6d"
+Algorithm Chatbot
+
+1. Start
+
+2. Store predefined questions and answers
+
+3. Display welcome message
+
+4. Repeat until user enters "bye"
+
+      a) Accept user input
+
+      b) Convert input to lowercase
+
+      c) Search matching question in database
+
+      d) If match found
+             Display corresponding answer
+
+         Else
+             Display "Sorry, I do not understand"
+
+5. Stop
+```
+
+---
+
+# Advantages of Chatbot
+
+* Fast response
+* Available 24/7
+* Reduces customer waiting time
+* Handles multiple customers simultaneously
+* Easy to implement
+
+---
+
+# Limitations of Chatbot
+
+* Cannot understand complex queries
+* Works only with predefined responses
+* Limited intelligence
+* Cannot replace human support completely
+
+---
+
+# Applications of Chatbot
+
+* E-commerce websites
+* Banking systems
+* Online shopping support
+* College inquiry systems
+* Hospital appointment systems
+
+---
+
+# Conclusion
+
+An elementary chatbot is a simple and useful customer interaction application that automates communication 
+between customers and organizations. It improves service efficiency by providing quick and accurate responses to common customer queries.

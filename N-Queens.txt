@@ -1,0 +1,250 @@
+N-Queens
+
+def is_safe(board, row, col, n):
+
+    for i in range(row):
+        if board[i][col] == 1:
+            return False
+
+    i, j = row - 1, col - 1
+
+    while i >= 0 and j >= 0:
+
+        if board[i][j] == 1:
+            return False
+
+        i -= 1
+        j -= 1
+
+    i, j = row - 1, col + 1
+
+    while i >= 0 and j < n:
+
+        if board[i][j] == 1:
+            return False
+
+        i -= 1
+        j += 1
+
+    return True
+
+
+def solve_nqueens(board, row, n):
+
+    if row == n:
+        return True
+
+    for col in range(n):
+
+        if is_safe(board, row, col, n):
+
+            board[row][col] = 1
+
+            if solve_nqueens(board, row + 1, n):
+                return True
+
+            board[row][col] = 0
+
+    return False
+
+
+print("Backtracking Solution for N-Queens")
+
+n = int(input("Enter number of queens: "))
+
+board = [[0] * n for _ in range(n)]
+
+if solve_nqueens(board, 0, n):
+
+    print("\nSolution:")
+
+    for row in board:
+        print(row)
+
+else:
+    print("No solution exists")
+
+
+def solve_nqueens_bb(n):
+
+    board = [[0] * n for _ in range(n)]
+
+    cols = [False] * n
+    diag1 = [False] * (2 * n)
+    diag2 = [False] * (2 * n)
+
+    def solve(row):
+
+        if row == n:
+            return True
+
+        for col in range(n):
+
+            if not cols[col] and not diag1[row + col] and not diag2[row - col + n]:
+
+                board[row][col] = 1
+
+                cols[col] = True
+                diag1[row + col] = True
+                diag2[row - col + n] = True
+
+                if solve(row + 1):
+                    return True
+
+                board[row][col] = 0
+
+                cols[col] = False
+                diag1[row + col] = False
+                diag2[row - col + n] = False
+
+        return False
+
+    if solve(0):
+
+        print("\nSolution:")
+
+        for row in board:
+            print(row)
+
+    else:
+        print("No solution exists")
+
+
+print("\nBranch and Bound Solution for N-Queens")
+
+n = int(input("Enter number of queens: "))
+
+solve_nqueens_bb(n)
+
+--------------------------------------------------------
+
+Theory:
+
+# Introduction
+
+The **N-Queens Problem** is a classical **Constraint Satisfaction Problem (CSP)** in computer science and artificial intelligence.
+The objective is to place **N queens** on an **N × N chessboard** such that no two queens attack each other.
+
+A queen can attack:
+
+* Horizontally
+* Vertically
+* Diagonally
+
+Therefore, the conditions are:
+
+* Only one queen in each row
+* Only one queen in each column
+* No two queens on the same diagonal
+
+The problem is commonly solved using:
+
+1. Backtracking
+2. Branch and Bound
+
+---
+
+# Working of Backtracking Method
+
+Backtracking is a recursive technique used to solve problems step by step.
+
+## Working Steps
+
+1. Start from the first row.
+2. Place a queen in a safe column.
+3. Move to the next row.
+4. Continue placing queens recursively.
+5. If no safe position is found:
+
+   * Remove the previously placed queen.
+   * Try the next column.
+6. Repeat until all queens are placed successfully.
+
+This method systematically explores all possible solutions.
+
+---
+
+# Safety Conditions
+
+Before placing a queen at position `(row, col)`, check:
+
+## 1) Column Check
+
+No queen should already exist in the same column.
+
+## 2) Left Diagonal Check
+
+No queen should exist in the upper-left diagonal.
+
+## 3) Right Diagonal Check
+
+No queen should exist in the upper-right diagonal.
+
+If all conditions are satisfied, the position is considered safe.
+
+---
+
+# Diagonal Calculation
+
+To efficiently identify diagonals, two arrays are used.
+
+For a queen placed at `(row, col)`:
+
+## Left Diagonal Index
+
+row-col+N-1
+
+## Right Diagonal Index
+
+row+col
+
+These formulas help in quickly checking whether a diagonal already contains a queen.
+
+---
+
+# Backtracking Algorithm
+
+```text id="4wkl97"
+Algorithm NQueen(row):
+
+1. If row == N:
+       Print solution
+       Return
+
+2. For each column from 0 to N-1:
+
+       Check if position (row, col) is safe
+
+       If safe:
+            Place queen
+
+            Call NQueen(row + 1)
+
+            Remove queen (Backtrack)
+
+
+# Branch and Bound Algorithm
+
+```text id="s4v7lz"
+Algorithm Solve(row):
+
+1. If row == N:
+       Print solution
+       Return true
+
+2. For each column from 0 to N-1:
+
+       If column[col] == false
+       and diag1[row-col+N-1] == false
+       and diag2[row+col] == false:
+
+            Place queen
+
+            Mark column and diagonals
+
+            Solve(row + 1)
+
+            Remove queen
+
+            Unmark column and diagonals
+```

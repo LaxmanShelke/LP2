@@ -1,0 +1,83 @@
+def dfs(graph, vertex, visited):
+    visited.add(vertex)
+    print(vertex, end=" ")
+
+    for neighbour in graph[vertex]:
+        if neighbour not in visited:
+            dfs(graph, neighbour, visited)
+
+
+vertices = int(input("Enter number of vertices: "))
+edges = int(input("Enter number of edges: "))
+
+graph = {}
+
+for i in range(vertices):
+    graph[i] = []
+
+print("Enter edges (u v):")
+for i in range(edges):
+    u, v = map(int, input().split())
+
+    graph[u].append(v)
+    graph[v].append(u)
+
+start = int(input("Enter starting vertex: "))
+
+visited = set()
+
+print("DFS Traversal:")
+dfs(graph, start, visited)
+
+
+output
+Enter number of vertices: 5
+Enter number of edges: 4
+Enter edges (u v):
+0 1
+0 2
+1 3
+1 4
+Enter starting vertex: 0
+
+
+theory:
+Depth First Search (DFS) – Detailed Theory Notes
+
+
+Data Structures and Algorithms Depth First Search (DFS) is a graph traversal algorithm used to 
+visit and search all vertices (nodes) of a graph or tree data structure.DFS starts from one vertex
+and explores as far as possible along each branch before backtracking.It is one of the most 
+important searching techniques in graphs and trees.
+
+DFS is a traversal technique where:
+
+1.Start from a source vertex
+2.Visit the current vertex
+3.Move to an unvisited adjacent vertex
+4.Continue deeper until no unvisited vertex remains
+5.Backtrack and continue searching
+
+DFS Algorithm
+Step 1:Select a starting vertex.
+
+Step 2:Mark the vertex as visited.
+
+Step 3:Print or process the vertex.
+
+Step 4:Visit all adjacent unvisited vertices recursively.
+
+Step 5:Repeat until all vertices are visited
+
+DFS Pseudocode
+DFS(vertex){
+    mark vertex as visited
+    print(vertex)
+
+    for each adjacent vertex neighbour {
+        if neighbour is not visited
+        {
+            DFS(neighbour)
+        }
+    }
+}

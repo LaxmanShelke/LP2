@@ -1,0 +1,121 @@
+BFS
+
+from collections import deque
+
+def bfs(graph, start):
+
+    visited = set()
+
+    queue = deque([start])
+
+    visited.add(start)
+
+    while queue:
+
+        vertex = queue.popleft()
+
+        print(vertex, end=" ")
+
+        for neighbour in graph[vertex]:
+
+            if neighbour not in visited:
+
+                visited.add(neighbour)
+
+                queue.append(neighbour)
+
+vertices = int(input("Enter number of vertices: "))
+
+edges = int(input("Enter number of edges: "))
+
+graph = {}
+
+for i in range(vertices):
+
+    graph[i] = []
+
+print("Enter edges (u v):")
+
+for i in range(edges):
+
+    u, v = map(int, input().split())
+
+    graph[u].append(v)
+
+    graph[v].append(u)
+
+start = int(input("Enter starting vertex: "))
+
+print("BFS Traversal:")
+
+bfs(graph, start)
+-------------------------------------------
+# Breadth First Search (BFS)
+
+Data Structures and Algorithms Breadth First Search (BFS) is a graph traversal algorithm used to visit and search all vertices (nodes) of a graph or tree data structure.
+BFS starts from one vertex and visits all neighbouring vertices first before moving to the next level of vertices.
+It is one of the most important searching techniques in graphs and trees.
+
+BFS is a traversal technique where:
+
+1. Start from a source vertex
+2. Visit the current vertex
+3. Visit all adjacent unvisited vertices
+4. Add adjacent vertices into queue
+5. Repeat the process until all vertices are visited
+
+---
+
+# BFS Algorithm
+
+### Step 1:
+
+Select a starting vertex.
+
+### Step 2:
+
+Mark the vertex as visited.
+
+### Step 3:
+
+Insert the vertex into the queue.
+
+### Step 4:
+
+Remove vertex from queue and print/process it.
+
+### Step 5:
+
+Visit all adjacent unvisited vertices and add them into queue.
+
+### Step 6:
+
+Repeat until queue becomes empty.
+
+---
+
+# BFS Pseudocode
+BFS(vertex){
+
+    mark vertex as visited
+
+    enqueue(vertex)
+
+    while queue is not empty
+    {
+        vertex = dequeue()
+
+        print(vertex)
+
+        for each adjacent vertex neighbour
+        {
+            if neighbour is not visited
+            {
+                mark neighbour as visited
+
+                enqueue(neighbour)
+            }
+        }
+    }
+}
+```

@@ -1,0 +1,115 @@
+Graph coloring problem
+
+def is_safe(node, graph, colors, color, n):
+
+    for k in range(n):
+        if graph[node][k] == 1 and colors[k] == color:
+            return False
+
+    return True
+
+
+def graph_coloring(graph, m, colors, node, n):
+
+    if node == n:
+        return True
+
+    for color in range(1, m + 1):
+
+        if is_safe(node, graph, colors, color, n):
+
+            colors[node] = color
+
+            if graph_coloring(graph, m, colors, node + 1, n):
+                return True
+
+            colors[node] = 0
+
+    return False
+
+
+n = 4
+
+m = 3
+
+graph = [
+    [0, 1, 1, 1],
+    [1, 0, 1, 0],
+    [1, 1, 0, 1],
+    [1, 0, 1, 0]
+]
+
+colors = [0] * n
+
+if graph_coloring(graph, m, colors, 0, n):
+
+    print("Solution Exists")
+    print("Assigned Colors are:")
+
+    for i in range(n):
+        print("Vertex", i, "--> Color", colors[i])
+
+else:
+    print("No Solution Exists")
+
+---------------------------
+Graph Coloring Introduction
+
+The Graph Coloring Problem is a famous Constraint Satisfaction Problem (CSP) in computer science and artificial intelligence.
+
+In this problem, colors are assigned to the vertices of a graph such that:
+
+No two adjacent vertices have the same color.
+Minimum colors are used if possible.
+
+A graph consists of:
+
+Vertices (nodes)
+Edges (connections between vertices)
+
+If two vertices are connected by an edge, they must have different colors.
+
+Applications of Graph Coloring
+Map Coloring
+Timetable Scheduling
+Register Allocation in Compiler Design
+Frequency Assignment
+Sudoku and Puzzle Solving
+Graph Coloring Algorithm (Backtracking)
+Algorithm GraphColoring(vertex)
+
+Input:
+    Graph G
+    Number of colors M
+
+1. If all vertices are colored:
+       Print solution
+       Return TRUE
+
+2. For color = 1 to M:
+
+       Check whether current color is safe
+
+       If safe:
+            Assign color to vertex
+
+            Call GraphColoring(next vertex)
+
+            Remove assigned color (Backtrack)
+
+3. If no color can be assigned:
+       Return FALSE
+Safety Condition
+
+A color can be assigned to a vertex only if:
+
+No adjacent vertex already has the same color.
+Time Complexity
+O(M^V)
+
+Where:
+
+M = Number of colors
+V = Number of vertices
+
+
